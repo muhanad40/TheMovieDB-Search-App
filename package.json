@@ -1,0 +1,19 @@
+{
+  "name": "dazn-movie-db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "babel": {
+    "presets": ["latest"]
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-latest": "^6.16.0",
+    "gulp": "^3.9.1",
+    "jasmine": "^2.5.2",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "webpack-stream": "^3.2.0"
+  }
+}
