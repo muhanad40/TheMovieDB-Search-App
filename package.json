@@ -4,16 +4,27 @@
   "main": "index.js",
   "license": "MIT",
   "babel": {
-    "presets": ["latest"]
+    "presets": [
+      "latest",
+      "react"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.20.0",
     "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
     "gulp": "^3.9.1",
     "jasmine": "^2.5.2",
+    "redux-devtools-extension": "^1.0.0",
+    "webpack-stream": "^3.2.0"
+  },
+  "dependencies": {
+    "redux": "^3.6.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "webpack-stream": "^3.2.0"
+    "react-redux": "^5.0.1",
+    "redux-thunk": "^2.1.0"
   }
 }
