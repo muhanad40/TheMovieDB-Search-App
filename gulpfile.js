@@ -3,7 +3,7 @@ let webpack = require('webpack-stream'),
     gulp    = require('gulp')
 
 let input = {
-    'js': path.join('.', 'src', 'js')
+    'js': path.join('.', 'src', 'js', 'app.js')
 }
 
 let output = {
@@ -19,12 +19,19 @@ let config = {
             loaders: [
                 { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
             ]
+        },
+        resolve: {
+            extensions: ["", ".es5", ".js"]
         }
     }
 }
 
 gulp.task('js', () => {
-    return gulp.src(path.join(input.js, 'app.js'))
+    return gulp.src(input.js)
         .pipe(webpack(config.webpack))
         .pipe(gulp.dest(output.js));
+})
+
+gulp.task('watch:js', () => {
+    return gulp.watch(input.js, ['js'])
 })
