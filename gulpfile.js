@@ -35,3 +35,7 @@ gulp.task('js', () => {
 gulp.task('watch:js', () => {
     return gulp.watch(input.js, ['js'])
 })
+
+module.exports = {
+    config
+}
