@@ -45,6 +45,8 @@ describe('App component', () => {
         inputEl.simulate('change', { target: { value: 'The matrix' } })
         inputEl.simulate('change', { target: { value: '' } })
 
-        expect(component.node.store.getState().appReducer.results.length).toEqual(0)
+        setTimeout(() => {
+            expect(component.node.store.getState().appReducer.results.length).toEqual(0)
+        })
     })
 })
