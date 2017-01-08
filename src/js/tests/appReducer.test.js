@@ -11,6 +11,17 @@ describe('appReducer', () => {
                 results: testResponses.searchResults.results
             })
 
-        expect(newState.results).toEqual(testResponses.searchResults.results)        
+        expect(newState.results).toEqual(testResponses.searchResults.results)
+    })
+
+    it('should clear results from store', () => {
+        let initialState = {
+                results: testResponses.searchResults.results
+            },
+            newState = appReducer(initialState, {
+                type: 'CLEAR_RESULTS'
+            })
+
+        expect(newState.results.length).toEqual(0)
     })
 })

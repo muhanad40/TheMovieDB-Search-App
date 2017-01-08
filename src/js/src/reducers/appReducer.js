@@ -11,6 +11,11 @@ const appReducer = (state = initialState, action) => {
             newState.results = action.results
             return newState
 
+        case 'CLEAR_RESULTS':
+            newState = Object.assign({}, state)
+            newState.results = []
+            return newState
+
         default:
             return state
     }

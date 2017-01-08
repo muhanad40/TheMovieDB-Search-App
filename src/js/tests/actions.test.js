@@ -1,4 +1,4 @@
-import { search, storeResults } from '../src/actions'
+import { search, storeResults, clearResults } from '../src/actions'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import testResponses from './test_responses'
@@ -14,6 +14,14 @@ describe('Actions', () => {
         expect(action).toEqual({
             type: 'STORE_RESULTS',
             results: testResponses.searchResults.results
+        })
+    })
+
+    it('should dispatch action to clear results', () => {
+        let action = clearResults()
+
+        expect(action).toEqual({
+            type: 'CLEAR_RESULTS'
         })
     })
 })
@@ -46,5 +54,6 @@ describe('Async actions', () => {
                                    JSON.stringify([testResponses.searchResults.results[0]]))
 
         expect(store.getActions()).toEqual(expectedActions)
+        expect(server.requests[0].url).toMatch(/query=the matrix/)
     })
 })

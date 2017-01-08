@@ -7,6 +7,12 @@ export function storeResults(results) {
     }
 }
 
+export function clearResults() {
+    return {
+        type: 'CLEAR_RESULTS'
+    }
+}
+
 export function search(keywords) {
     return dispatch => {
         dispatch({
