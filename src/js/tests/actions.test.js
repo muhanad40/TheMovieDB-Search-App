@@ -42,16 +42,14 @@ describe('Async actions', () => {
     it('should fetch results', () => {
         let expectedActions = [
                 { type: 'SEARCH', keywords: 'the matrix' },
-                { type: 'STORE_RESULTS', results: [
-                    testResponses.searchResults.results[0]
-                ]}
+                { type: 'STORE_RESULTS', results: testResponses.searchResults.results }
             ]
 
         store.dispatch(search('the matrix'))
 
         server.requests[0].respond(200,
                                    { "Content-Type": "application/json" },
-                                   JSON.stringify([testResponses.searchResults.results[0]]))
+                                   JSON.stringify(testResponses.searchResults))
 
         expect(store.getActions()).toEqual(expectedActions)
         expect(server.requests[0].url).toMatch(/query=the matrix/)

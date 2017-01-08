@@ -35,7 +35,7 @@ export function search(keywords) {
         themoviedb.search.getMulti({"query": keywords}, function onSearchSuccess(res) {
             let parsedRes = JSON.parse(res)
 
-            dispatch(storeResults(parsedRes))
+            dispatch(storeResults(parsedRes.results))
         }, function onSearchError() {})
     }
 }
