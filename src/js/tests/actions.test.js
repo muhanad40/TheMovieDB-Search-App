@@ -1,4 +1,4 @@
-import { search, storeResults, clearResults } from '../src/actions'
+import { search, storeResults, clearResults, fetchConfiguration } from '../src/actions'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import testResponses from './test_responses'
@@ -55,5 +55,20 @@ describe('Async actions', () => {
 
         expect(store.getActions()).toEqual(expectedActions)
         expect(server.requests[0].url).toMatch(/query=the matrix/)
+    })
+
+    it('should fetch tmdb configuration', () => {
+        let expectedActions = [
+                { type: 'FETCH_CONFIGURATION' },
+                { type: 'STORE_CONFIGURATION', configuration: testResponses.configuration }
+            ]
+
+        store.dispatch(fetchConfiguration())
+
+        server.requests[0].respond(200,
+                                   { "Content-Type": "application/json" },
+                                   JSON.stringify(testResponses.configuration))
+
+        expect(store.getActions()).toEqual(expectedActions)
     })
 })

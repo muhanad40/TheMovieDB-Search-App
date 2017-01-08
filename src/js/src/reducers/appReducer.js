@@ -1,5 +1,6 @@
 let initialState = {
-    results: []
+    results: [],
+    configuration: {}
 }
 
 const appReducer = (state = initialState, action) => {
@@ -14,6 +15,11 @@ const appReducer = (state = initialState, action) => {
         case 'CLEAR_RESULTS':
             newState = Object.assign({}, state)
             newState.results = []
+            return newState
+
+        case 'STORE_CONFIGURATION':
+            newState = Object.assign({}, state)
+            newState.configuration = action.configuration
             return newState
 
         default:

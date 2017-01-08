@@ -12,6 +12,16 @@ const mockStore = configureStore(middlewares)
 let store = mockStore()
 
 describe('App component', () => {
+    let server
+
+    beforeEach(() => {
+        server = sinon.fakeServer.create()
+    })
+
+    afterEach(() => {
+        server.restore()
+    })
+
     it('should call onChange callback when text is entered into search box', () => {
         sinon.spy(App.prototype, 'onChange')
 
@@ -48,5 +58,20 @@ describe('App component', () => {
         setTimeout(() => {
             expect(component.node.store.getState().appReducer.results.length).toEqual(0)
         })
+    })
+
+    it('should fetch configuration when the app is initially loaded', () => {
+        let store = mockStore({
+                appReducer: {
+                    results: []
+                }
+            }),
+            component = mount(
+                <Provider store={ store }>
+                    <ConnectedApp />
+                </Provider>
+            )
+
+        expect(server.requests[0].url).toMatch(/http:\/\/api.themoviedb.org\/3\/configuration/)
     })
 })

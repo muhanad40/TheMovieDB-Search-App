@@ -18,6 +18,13 @@ export function clearResults() {
     }
 }
 
+export function storeConfiguration(configuration) {
+    return {
+        type: 'STORE_CONFIGURATION',
+        configuration
+    }
+}
+
 export function search(keywords) {
     return dispatch => {
         dispatch({
@@ -30,5 +37,19 @@ export function search(keywords) {
 
             dispatch(storeResults(parsedRes))
         }, function onSearchError() {})
+    }
+}
+
+export function fetchConfiguration() {
+    return dispatch => {
+        dispatch({
+            type: 'FETCH_CONFIGURATION'
+        })
+
+        themoviedb.configurations.getConfiguration(function onConfigurationFetchSuccess(res) {
+            let parsedRes = JSON.parse(res)
+
+            dispatch(storeConfiguration(parsedRes))
+        }, function onConfigurationFetchError() {})
     }
 }

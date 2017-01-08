@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import template from "../templates/App"
-import { search, clearResults } from '../actions'
+import { search, clearResults, fetchConfiguration } from '../actions'
 
 const mapStateToProps = (state) => {
     return {
@@ -10,6 +10,10 @@ const mapStateToProps = (state) => {
 }
 
 export class App extends Component {
+    componentDidMount() {
+        this.props.dispatch(fetchConfiguration())
+    }
+
     onChange(e) {
         if(e.target.value == '') {
             this.props.dispatch(clearResults())

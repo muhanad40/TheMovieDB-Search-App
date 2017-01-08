@@ -24,4 +24,16 @@ describe('appReducer', () => {
 
         expect(newState.results.length).toEqual(0)
     })
+
+    it('should save tmdb configuration to store', () => {
+        let initialState = {
+                configuration: {}
+            },
+            newState = appReducer(initialState, {
+                type: 'STORE_CONFIGURATION',
+                configuration: testResponses.configuration
+            })
+
+        expect(newState.configuration).toEqual(testResponses.configuration)
+    })
 })
