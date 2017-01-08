@@ -1,5 +1,3 @@
-import theMovieDb from './src/themoviedb'
-
 require("babel-polyfill")
 
 import App from './src/components/App'
