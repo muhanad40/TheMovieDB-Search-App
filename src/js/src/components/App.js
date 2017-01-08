@@ -6,7 +6,10 @@ const mapStateToProps = (state) => {
     return {}
 }
 
-class App extends Component {
+export class App extends Component {
+    onChange() {
+
+    }
 
     render() {
         return template.apply(this)
