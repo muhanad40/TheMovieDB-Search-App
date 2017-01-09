@@ -39,20 +39,24 @@ describe('Async actions', () => {
         server.restore()
     })
 
-    it('should fetch results', () => {
+    // TODO: Fix this test. Mock store is not detecting the second action for whatever reason :/
+    it('should fetch results', (done) => {
         let expectedActions = [
-                { type: 'SEARCH', keywords: 'the matrix' },
+                { type: 'SEARCH', keywords: 'the departed' },
                 { type: 'STORE_RESULTS', results: testResponses.searchResults.results }
             ]
 
-        store.dispatch(search('the matrix'))
+        store.dispatch(search('the departed'))
 
-        server.requests[0].respond(200,
-                                   { "Content-Type": "application/json" },
-                                   JSON.stringify(testResponses.searchResults))
+        setTimeout(() => {
+            server.requests[0].respond(200,
+                                       { "Content-Type": "application/json" },
+                                       JSON.stringify(testResponses.searchResults))
 
-        expect(store.getActions()).toEqual(expectedActions)
-        expect(server.requests[0].url).toMatch(/query=the matrix/)
+            expect(store.getActions()).toEqual(expectedActions)
+            expect(server.requests[0].url).toMatch(/query=the departed/)
+            done()
+        }, 400)
     })
 
     it('should fetch tmdb configuration', () => {
