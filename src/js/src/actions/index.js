@@ -1,5 +1,7 @@
 import themoviedb from '../themoviedb'
 
+let searchTimer
+
 // NOTE: This is bad. In a proper production application,
 // this should be stored in an environment variable and
 // inserted in a variable on the page
@@ -27,16 +29,19 @@ export function storeConfiguration(configuration) {
 
 export function search(keywords) {
     return dispatch => {
-        dispatch({
-            type: 'SEARCH',
-            keywords
-        })
+        clearTimeout(searchTimer)
+        searchTimer = setTimeout(() => {
+            dispatch({
+                type: 'SEARCH',
+                keywords
+            })
 
-        themoviedb.search.getMulti({"query": keywords}, function onSearchSuccess(res) {
-            let parsedRes = JSON.parse(res)
+            themoviedb.search.getMulti({"query": keywords}, function onSearchSuccess(res) {
+                let parsedRes = JSON.parse(res)
 
-            dispatch(storeResults(parsedRes.results))
-        }, function onSearchError() {})
+                dispatch(storeResults(parsedRes.results))
+            }, function onSearchError() {})
+        }, 300)
     }
 }
 
