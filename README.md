@@ -5,6 +5,8 @@ git clone git@github.com:muhanad40/TheMovieDB-Search-App.git
 ```
 2) `cd TheMovieDB-Search-App`
 
+4) `npm install` or `yarn`
+
 3) `npm open`
 
 ## Future improvements:
