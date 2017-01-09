@@ -9,6 +9,9 @@ git clone git@github.com:muhanad40/TheMovieDB-Search-App.git
 
 3) `npm open`
 
+## Tests
+`npm test`
+
 ## Future improvements:
 
 - Possibly link the titles to their actual pages on TMDB
