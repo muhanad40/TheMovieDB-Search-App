@@ -9,6 +9,11 @@
       "react"
     ]
   },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start",
+    "build": "./node_modules/.bin/gulp js",
+    "open": "npm build && open ./index.html"
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
