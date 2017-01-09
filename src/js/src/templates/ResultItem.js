@@ -16,7 +16,7 @@ export default function() {
                 </div>
 
                 <div className="column medium-5">
-                    <h4 className="result__title">{ data.title }</h4>
+                    <h4 className="result__title">{ data.title || data.original_name }</h4>
 
                     <span className="result__type label">{ mediaType }</span>
 
