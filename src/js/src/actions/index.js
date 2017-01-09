@@ -1,4 +1,4 @@
-import themoviedb from '../themoviedb'
+import themoviedb from '../vendor/themoviedb'
 
 let searchTimer
 
