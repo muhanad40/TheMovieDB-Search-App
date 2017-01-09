@@ -1,4 +1,5 @@
 import React from "react"
+import Results from '../components/Results'
 
 export default function() {
     return <div>
@@ -9,5 +10,9 @@ export default function() {
                 <input type="text" onChange={ this.onChange.bind(this) } placeholder="Search for a movie, tv show, person..." />
             </div>
         </div>
+
+        { this.props.results.length > 0 &&
+            <Results />
+        }
     </div>
 }
